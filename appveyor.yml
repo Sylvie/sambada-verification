@@ -1,0 +1,23 @@
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+# scripts that are called at very beginning, before repo cloning
+#init:
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: windows
+
+build_script:
+  - ps: SAMBADA_VERSION=0.6.0beta2
+  - SAMBADA_OS_NAME=%PLATFORM%
+  - echo ${SAMBADA_VERSION} ${SAMBADA_OS_NAME} %PLATFORM%
+  - PACKAGE_NAME=sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}
+  - ps: wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
+  - ps: tar -zxvf $PACKAGE_NAME.tar.gz
+  - cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
+  - ps: ..\..\binaries\sambada.exe param-cattle.txt cattle-env.csv cattle-mark.txt
+  - head  cattle-mark-Out-1.txt
