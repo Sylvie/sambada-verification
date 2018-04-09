@@ -1,0 +1,23 @@
+sudo: false
+dist: trusty
+language: generic
+env:
+  - SAMBADA_VERSION=v0.6.0beta2
+matrix:
+  include:
+  - os: linux
+  - env:
+      - SAMBADA_OS_NAME=ubuntu
+  - os: osx
+    osx_image: xcode8
+    env:
+      - SAMBADA_OS_NAME=${TRAVIS_OS_NAME}
+git:
+  depth: 100
+script:
+  - wget "https://github.com/Sylvie/sambada/releases/tag/$SAMBADA_VERSION"
+  - tar -zxvf sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}
+  - cd sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}/examples/subset-cattle-SNP
+  - ../../binaries/sambada
+  - ../../binaries/sambada param-cattle.txt cattle-env.csv cattle-mark.txt
+  - head  cattle-mark-Out-1.txt
