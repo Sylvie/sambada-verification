@@ -6,7 +6,7 @@ env:
 matrix:
   include:
   - os: linux
-  - env:
+    - env:
       - SAMBADA_OS_NAME=ubuntu
   - os: osx
     osx_image: xcode8
@@ -15,7 +15,8 @@ matrix:
 git:
   depth: 100
 script:
-  - wget "https://github.com/Sylvie/sambada/releases/tag/$SAMBADA_VERSION"
+  - echo ${SAMBADA_VERSION} ${SAMBADA_OS_NAME}
+  - wget "https://github.com/Sylvie/sambada/releases/tag/${SAMBADA_VERSION}"
   - tar -zxvf sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}
   - cd sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}/examples/subset-cattle-SNP
   - ../../binaries/sambada
