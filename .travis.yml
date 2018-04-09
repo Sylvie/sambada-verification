@@ -6,7 +6,7 @@ env:
 matrix:
   include:
   - os: linux
-    - env:
+    env:
       - SAMBADA_OS_NAME=ubuntu
   - os: osx
     osx_image: xcode8
