@@ -18,7 +18,7 @@ build_script:
       echo "${SAMBADA_VERSION} ${SAMBADA_OS_NAME}"
       $PACKAGE_NAME = "sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}"
       echo $PACKAGE_NAME
-      appveyor DownloadFile https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz
+      Start-FileDownload 'https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz'
       #(New-Object Net.WebClient).DownloadFile("https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz", "%APPVEYOR_BUILD_FOLDER%\${PACKAGE_NAME}.tar.gz")
       #wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
       tar -zxvf ${PACKAGE_NAME}.tar.gz
