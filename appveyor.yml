@@ -17,8 +17,9 @@ build_script:
       $SAMBADA_OS_NAME = "%PLATFORM%"
       #echo "${SAMBADA_VERSION}" "${SAMBADA_OS_NAME}" "%PLATFORM%"
       $PACKAGE_NAME = "sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}"
-      wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
-      tar -zxvf $PACKAGE_NAME.tar.gz
+      (New-Object Net.WebClient).DownloadFile("https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz", "${PACKAGE_NAME}.tar.gz")
+      #wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
+      tar -zxvf ${PACKAGE_NAME}.tar.gz
       cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
       ..\..\binaries\sambada.exe param-cattle.txt cattle-env.csv cattle-mark.txt
       head  cattle-mark-Out-1.txt
