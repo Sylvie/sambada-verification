@@ -17,7 +17,7 @@ build_script:
       $SAMBADA_OS_NAME = "%PLATFORM%"
       #echo "${SAMBADA_VERSION}" "${SAMBADA_OS_NAME}" "%PLATFORM%"
       $PACKAGE_NAME = "sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}"
-      (New-Object Net.WebClient).DownloadFile("https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz", "${PACKAGE_NAME}.tar.gz")
+      (New-Object Net.WebClient).DownloadFile("https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz", "%APPVEYOR_BUILD_FOLDER%\${PACKAGE_NAME}.tar.gz")
       #wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
       tar -zxvf ${PACKAGE_NAME}.tar.gz
       cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
