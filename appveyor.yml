@@ -2,8 +2,8 @@
 #    environment configuration    #
 #---------------------------------#
 # scripts that are called at very beginning, before repo cloning
-#init:
-#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 #---------------------------------#
 #       build configuration       #
@@ -25,3 +25,19 @@ build_script:
       cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
       ..\..\binaries\sambada.exe param-cattle.txt cattle-env.csv cattle-mark.txt
       head  cattle-mark-Out-1.txt
+
+#---------------------------------#
+#        global handlers          #
+#---------------------------------#
+
+# on successful build
+#on_success:
+#- do something
+
+# on build failure
+#on_failure:
+#- do something
+
+# after build failure or success
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
