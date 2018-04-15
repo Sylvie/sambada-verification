@@ -14,7 +14,8 @@ platform: windows
 build_script:
   - ps: |
       $SAMBADA_VERSION = "0.6.0beta2"
-      $SAMBADA_OS_NAME = "windows"
+#      $SAMBADA_OS_NAME = "windows"
+      $SAMBADA_OS_NAME = "%platform%"
       echo "${SAMBADA_VERSION} ${SAMBADA_OS_NAME}"
       $PACKAGE_NAME = "sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}"
       echo $PACKAGE_NAME
