@@ -3,17 +3,20 @@ dist: trusty
 language: generic
 env:
   global:
-    - SAMBADA_VERSION=0.6.0beta3
+    - SAMBADA_VERSION=0.6.0beta4
 
 matrix:
   include:
   - os: linux
     env:
       - SAMBADA_OS_NAME=ubuntu
+      - MATRIX_EVAL=""
   - os: osx
-    osx_image: xcode8
     env:
       - SAMBADA_OS_NAME=${TRAVIS_OS_NAME}
+      - MATRIX_EVAL="brew cask uninstall oclint && brew install gcc && CC=gcc-7 && CXX=g++-7"
+before_install:
+    - eval "${MATRIX_EVAL}"
 git:
   depth: 100
 script:
