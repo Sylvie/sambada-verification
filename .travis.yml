@@ -3,7 +3,7 @@ dist: trusty
 language: generic
 env:
   global:
-    - SAMBADA_VERSION=0.8.0alpha0
+    - SAMBADA_VERSION=0.8.0alpha1
 
 matrix:
   include:
