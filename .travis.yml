@@ -13,9 +13,13 @@ matrix:
       - MATRIX_EVAL=""
       - SAMBADA_TEST_TYPE=SMOKE
   - os: linux
+    addons:
+      apt:
+        packages:
+        - g++-7
     env:
       - SAMBADA_OS_NAME=ubuntu
-      - MATRIX_EVAL=""
+      - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
       - SAMBADA_TEST_TYPE=INTEGRATION
   - os: osx
     env:

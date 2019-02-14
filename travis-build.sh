@@ -8,5 +8,13 @@ if [ "${SAMBADA_TEST_TYPE}" = "SMOKE" ]; then
   ../../binaries/sambada param-cattle.txt cattle-env.csv cattle-mark.txt
   head  cattle-mark-Out-1.txt
 else
-    echo "Integration tests not available yet."
+  ARCHIVE_NAME=sambada-${SAMBADA_VERSION}
+  wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${ARCHIVE_NAME}.zip"
+  tar -zxvf ${ARCHIVE_NAME}.tar.gz
+  mkdir ${ARCHIVE_NAME}/build/
+  cd ${ARCHIVE_NAME}/build/
+  ../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual
+  make test/integration/SambadaIntegrationTests
+  ln -s binaries ../../${PACKAGE_NAME}/binaries/
+  test/integration/SambadaIntegrationTests
 fi
