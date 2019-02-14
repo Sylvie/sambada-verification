@@ -31,4 +31,4 @@ before_install:
     - eval "${MATRIX_EVAL}"
 git:
   depth: 100
-script: travis-build.sh
+script: ./travis-build.sh
