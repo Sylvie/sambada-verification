@@ -10,7 +10,7 @@ if [ "${SAMBADA_TEST_TYPE}" = "SMOKE" ]; then
 else
   ARCHIVE_NAME=sambada-${SAMBADA_VERSION}
   wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${ARCHIVE_NAME}.zip"
-  tar -zxvf ${ARCHIVE_NAME}.zip
+  unzip ${ARCHIVE_NAME}.zip
   mkdir ${ARCHIVE_NAME}/build/
   cd ${ARCHIVE_NAME}/build/
   ../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual
