@@ -15,8 +15,10 @@ matrix:
   - os: linux
     addons:
       apt:
+        sources:
+          - ubuntu-toolchain-r-test
         packages:
-        - g++-7
+          - g++-7
     env:
       - SAMBADA_OS_NAME=ubuntu
       - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
