@@ -5,16 +5,21 @@
 #init:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
+environment:
+#  global:
+#    connection_string: server=12;password=13;
+#    service_url: https://127.0.0.1:8090
+
+  matrix:
+  - SAMBADA_TEST_TYPE: SMOKE
+
+  - SAMBADA_TEST_TYPE: INTEGRATION
+
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: windows
-
-matrix:
-  - SAMBADA_TEST_TYPE: SMOKE
-
-  - SAMBADA_TEST_TYPE: INTEGRATION
 
 build_script:
   - ps: |
