@@ -15,6 +15,6 @@ else
   cd ${ARCHIVE_NAME}/build/
   ../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual
   make test/integration/SambadaIntegrationTests
-  ln -s binaries ../../${PACKAGE_NAME}/binaries/
+  ln -s ../../${PACKAGE_NAME}/binaries/ binaries
   test/integration/SambadaIntegrationTests
 fi
