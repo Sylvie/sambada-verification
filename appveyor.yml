@@ -50,7 +50,7 @@ build_script:
         echo "*** 2 ***"
         ls .
         echo "*** 3 ***"
-        ls ..
+        ls ${ARCHIVE_NAME}
         echo "*** 4 ***"
         mkdir ${ARCHIVE_NAME}/build/
         echo "*** 5 ***"
@@ -59,7 +59,7 @@ build_script:
         pwd
         echo "*** 7 ***"
         ls ..
-        echo "*** 8 ***"        
+        echo "*** 8 ***"
         bash -c "../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual"
         make test/integration/SambadaIntegrationTests
         bash -c "ln -s ../../${PACKAGE_NAME}/binaries/ binaries"
