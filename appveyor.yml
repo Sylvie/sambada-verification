@@ -45,6 +45,9 @@ build_script:
         $ARCHIVE_URL = "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${ARCHIVE_NAME}.zip"
         curl $ARCHIVE_URL -o "$ARCHIVE_NAME.zip"
         unzip "${ARCHIVE_NAME}.zip" -d "${ARCHIVE_NAME}"
+        pwd
+        ls .
+        ls ..
         mkdir ${ARCHIVE_NAME}/build/
         cd ${ARCHIVE_NAME}/build/
         pwd
