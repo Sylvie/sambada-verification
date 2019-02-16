@@ -40,7 +40,17 @@ build_script:
       }
       else
       {
-        echo "Integration tests not available yet."
+        SET PATH=C:\msys64\usr\bin;C:\msys64\mingw64\bin;%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32;
+        $ARCHIVE_NAME = "sambada-${SAMBADA_VERSION}""
+        $ARCHIVE_URL = "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${ARCHIVE_NAME}.zip"
+        curl $ARCHIVE_URL -o "$ARCHIVE_NAME.zip"
+        unzip ${ARCHIVE_NAME}.zip -d ${ARCHIVE_NAME}
+        mkdir ${ARCHIVE_NAME}/build/
+        cd ${ARCHIVE_NAME}/build/
+        bash -c "../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual"
+        make test/integration/SambadaIntegrationTests
+        bash -c "ln -s ../../${PACKAGE_NAME}/binaries/ binaries"
+        test/integration/SambadaIntegrationTests
       }
 
 #---------------------------------#
