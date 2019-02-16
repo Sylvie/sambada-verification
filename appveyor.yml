@@ -52,17 +52,17 @@ build_script:
         echo "*** 3 ***"
         ls ${ARCHIVE_NAME}
         echo "*** 4 ***"
-        mkdir ${ARCHIVE_NAME}/build/
+        mkdir ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
         echo "*** 5 ***"
-        cd ${ARCHIVE_NAME}/build/
+        cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
         echo "*** 6 ***"
         pwd
         echo "*** 7 ***"
         ls ..
         echo "*** 8 ***"
-        bash -c "../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual"
+        bash -c "../../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual"
         make test/integration/SambadaIntegrationTests
-        bash -c "ln -s ../../${PACKAGE_NAME}/binaries/ binaries"
+        bash -c "ln -s ../../../${PACKAGE_NAME}/binaries/ binaries"
         test/integration/SambadaIntegrationTests
       }
 
