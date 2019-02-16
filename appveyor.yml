@@ -31,7 +31,8 @@ build_script:
       $PACKAGE_URL = "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.zip"
       curl $PACKAGE_URL -o "$PACKAGE_NAME.zip"
       unzip "${PACKAGE_NAME}.zip" -d "${PACKAGE_NAME}"
-      echo "Sambada test type: ${SAMBADA_TEST_TYPE}"
+      echo Sambada test type: ${SAMBADA_TEST_TYPE}
+      echo Sambada test type: %SAMBADA_TEST_TYPE%
       if (${SAMBADA_TEST_TYPE} -eq "SMOKE")
       {
         cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
