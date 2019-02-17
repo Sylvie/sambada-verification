@@ -1,15 +1,14 @@
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
+# Build worker image (VM template)
+image: Visual Studio 2015
+
 # scripts that are called at very beginning, before repo cloning
 #init:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 environment:
-#  global:
-#    connection_string: server=12;password=13;
-#    service_url: https://127.0.0.1:8090
-
   matrix:
   - SAMBADA_TEST_TYPE: SMOKE
 
@@ -60,6 +59,7 @@ build_script:
         echo "*** 7 ***"
         ls ..
         echo "*** 8 ***"
+        echo "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
         make test/integration/SambadaIntegrationTests.exe
         bash -c "ln -s ../../../${PACKAGE_NAME}/binaries/ binaries"
