@@ -59,9 +59,10 @@ build_script:
         echo "*** 7 ***"
         ls ..
         echo "*** 8 ***"
-        echo "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
+        echo "../configure --disable-manual sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32"
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
-        make test/integration/SambadaIntegrationTests.exe
+        make
+        # test/integration/SambadaIntegrationTests.exe
         bash -c "ln -s ../../../${PACKAGE_NAME}/binaries/ binaries"
         test/integration/SambadaIntegrationTests.exe
       }
