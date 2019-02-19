@@ -56,7 +56,7 @@ build_script:
         cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/
         echo "*** 6 ***"
         pwd
-        autoreconf -i
+        bash -c "autoreconf -i"
         echo "*** 7 ***"
         cd build
         echo "*** 8 ***"
