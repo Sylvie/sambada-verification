@@ -65,9 +65,8 @@ build_script:
         echo "*** 9 ***"
         cat makefile
         echo "*** 10 ***"
-        make
-        # test/integration/SambadaIntegrationTests.exe
-        bash -c "ln -s ../../../${PACKAGE_NAME}/binaries/ binaries"
+        make test/integration/SambadaIntegrationTests.exe
+        New-Item -Path binaries -ItemType SymbolicLink -Value ../../../${PACKAGE_NAME}/binaries/
         test/integration/SambadaIntegrationTests.exe
       }
 
