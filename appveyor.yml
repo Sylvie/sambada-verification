@@ -5,14 +5,14 @@
 image: Visual Studio 2015
 
 # scripts that are called at very beginning, before repo cloning
-init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#init:
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 environment:
   matrix:
-  - SAMBADA_TEST_TYPE: SMOKE
-
   - SAMBADA_TEST_TYPE: INTEGRATION
+
+  - SAMBADA_TEST_TYPE: SMOKE
 
 #---------------------------------#
 #       build configuration       #
@@ -84,5 +84,5 @@ build_script:
 #- do something
 
 # after build failure or success
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
