@@ -44,29 +44,15 @@ build_script:
         $ARCHIVE_URL = "https://github.com/Sylvie/sambada/archive/v${SAMBADA_VERSION}.zip"
         curl $ARCHIVE_URL -o "$ARCHIVE_NAME.zip"
         unzip "${ARCHIVE_NAME}.zip" -d "${ARCHIVE_NAME}"
-        echo "*** 1 ***"
-        pwd
-        echo "*** 2 ***"
-        ls .
-        echo "*** 3 ***"
-        ls ${ARCHIVE_NAME}
-        echo "*** 4 ***"
         mkdir ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
-        echo "*** 5 ***"
         cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/
-        echo "*** 6 ***"
-        pwd
         bash -c "autoreconf -i"
-        echo "*** 7 ***"
         cd build
-        echo "*** 8 ***"
-        echo "../configure --disable-manual sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32"
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
-        echo "*** 9 ***"
-        cat makefile
-        echo "*** 10 ***"
+        echo "Building ..."
         make test/integration/SambadaIntegrationTests.exe
         New-Item -Path binaries -ItemType SymbolicLink -Value ../../../${PACKAGE_NAME}/binaries/
+        echo "Running tests ..."
         test/integration/SambadaIntegrationTests.exe
       }
 
