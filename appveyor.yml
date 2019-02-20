@@ -51,6 +51,9 @@ build_script:
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
         echo "Building ..."
         make test/integration/SambadaIntegrationTests.exe
+        echo "Listing build folder:"
+        ls .
+        echo "Making link:"
         New-Item -Path binaries -ItemType SymbolicLink -Value ../../../${PACKAGE_NAME}/binaries/
         echo "Running tests ..."
         test/integration/SambadaIntegrationTests.exe
