@@ -41,16 +41,13 @@ build_script:
       {
         ${env:PATH} = "C:\msys64\usr\bin;C:\msys64\mingw64\bin;${env:PATH};C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32;"
         $ARCHIVE_NAME = "sambada-${SAMBADA_VERSION}"
-        # $ARCHIVE_URL = "https://github.com/Sylvie/sambada/archive/v${SAMBADA_VERSION}.zip"
         $ARCHIVE_URL = "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${ARCHIVE_NAME}.zip"
         curl $ARCHIVE_URL -o "$ARCHIVE_NAME.zip"
         unzip "${ARCHIVE_NAME}.zip" -d "${ARCHIVE_NAME}"
         mkdir ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
-        cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/
-        # bash -c "autoreconf -i"
-        cd build
+        cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
-        echo "Building ..."
+        echo "Building test/integration/SambadaIntegrationTests.exe ..."
         make test/integration/SambadaIntegrationTests.exe
         echo "Listing build folder:"
         ls .
