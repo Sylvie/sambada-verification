@@ -5,7 +5,7 @@ wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${
 tar -zxvf $PACKAGE_NAME.tar.gz
 if [ "${SAMBADA_TEST_TYPE}" = "SMOKE" ]; then
   cd ${PACKAGE_NAME}/examples/subset-cattle-SNP
-  ../../binaries/sambada param-cattle.txt cattle-env.csv cattle-mark.txt
+  time ../../binaries/sambada param-cattle.txt cattle-env.csv cattle-mark.txt
   head  cattle-mark-Out-1.txt
 else
   ARCHIVE_NAME=sambada-${SAMBADA_VERSION}
@@ -16,5 +16,5 @@ else
   ../configure sambadahostsystemname=${SAMBADA_OS_NAME} --disable-manual
   make test/integration/SambadaIntegrationTests
   ln -s ../../${PACKAGE_NAME}/binaries/ binaries
-  test/integration/SambadaIntegrationTests
+  time test/integration/SambadaIntegrationTests
 fi

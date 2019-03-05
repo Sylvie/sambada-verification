@@ -34,7 +34,10 @@ build_script:
       if (${env:SAMBADA_TEST_TYPE} -eq "SMOKE")
       {
         cd ${PACKAGE_NAME}\examples\subset-cattle-SNP
+        $timer = [Diagnostics.Stopwatch]::StartNew()
         ..\..\binaries\sambada.exe param-cattle.txt cattle-env.csv cattle-mark.txt
+        $timer.Stop()
+        $timer.Elapsed
         head  cattle-mark-Out-1.txt
       }
       else
@@ -54,7 +57,10 @@ build_script:
         echo "Making link:"
         New-Item -Path binaries -ItemType SymbolicLink -Value ../../../${PACKAGE_NAME}/binaries/
         echo "Running tests ..."
+        $timer = [Diagnostics.Stopwatch]::StartNew()
         test/integration/SambadaIntegrationTests.exe
+        $timer.Stop()
+        $timer.Elapsed
       }
 
 #---------------------------------#
