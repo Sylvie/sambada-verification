@@ -1,9 +1,9 @@
 sudo: false
 dist: trusty
-language: generic
+language: cpp
 env:
   global:
-    - SAMBADA_VERSION=0.8.0alpha4
+    - SAMBADA_VERSION=0.8.0alpha6
 
 matrix:
   include:
@@ -11,19 +11,33 @@ matrix:
     env:
       - SAMBADA_OS_NAME=ubuntu
       - MATRIX_EVAL=""
+      - SAMBADA_TEST_TYPE=SMOKE
+  - os: linux
+    compiler: gcc
+    addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - g++-7
+    env:
+      - SAMBADA_OS_NAME=ubuntu
+      - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+      - SAMBADA_TEST_TYPE=INTEGRATION
   - os: osx
     env:
       - SAMBADA_OS_NAME=${TRAVIS_OS_NAME}
       - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+      - SAMBADA_TEST_TYPE=SMOKE
+  - os: osx
+    osx_image: xcode10.1
+    compiler: gcc
+    env:
+      - SAMBADA_OS_NAME=${TRAVIS_OS_NAME}
+      - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+      - SAMBADA_TEST_TYPE=INTEGRATION
 before_install:
     - eval "${MATRIX_EVAL}"
 git:
   depth: 100
-script:
-  - echo ${SAMBADA_VERSION} ${SAMBADA_OS_NAME}
-  - PACKAGE_NAME=sambada-${SAMBADA_VERSION}-${SAMBADA_OS_NAME}
-  - wget "https://github.com/Sylvie/sambada/releases/download/v${SAMBADA_VERSION}/${PACKAGE_NAME}.tar.gz"
-  - tar -zxvf $PACKAGE_NAME.tar.gz
-  - cd ${PACKAGE_NAME}/examples/subset-cattle-SNP
-  - ../../binaries/sambada param-cattle.txt cattle-env.csv cattle-mark.txt
-  - head  cattle-mark-Out-1.txt
+script: ./travis-build.sh
