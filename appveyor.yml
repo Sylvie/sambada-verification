@@ -48,7 +48,10 @@ build_script:
         curl $ARCHIVE_URL -o "$ARCHIVE_NAME.zip"
         unzip "${ARCHIVE_NAME}.zip" -d "${ARCHIVE_NAME}"
         mkdir ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
-        cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/build/
+        cd ${ARCHIVE_NAME}/${ARCHIVE_NAME}/
+        echo "Regenerating the configuration files"
+        autoreconf -i
+        cd build/
         bash -c "../configure sambadahostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 --disable-manual"
         echo "Building test/integration/SambadaIntegrationTests.exe ..."
         make test/integration/SambadaIntegrationTests.exe
