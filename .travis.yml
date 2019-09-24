@@ -38,11 +38,6 @@ matrix:
       - SAMBADA_OS_NAME=${TRAVIS_OS_NAME}
       - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
       - SAMBADA_TEST_TYPE=INTEGRATION
-# macOS for R.SamBada
-  - os: osx
-    env:
-      - SAMBADA_OS_NAME="${TRAVIS_OS_NAME}-rsambada-only"
-      - SAMBADA_TEST_TYPE=SMOKE
 
 before_install:
     - eval "${MATRIX_EVAL}"
