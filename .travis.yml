@@ -3,7 +3,7 @@ dist: trusty
 language: cpp
 env:
   global:
-    - SAMBADA_VERSION=0.8.3rc2
+    - SAMBADA_VERSION=0.8.3
 
 matrix:
   include:
