@@ -20,7 +20,7 @@ jobs:
       - name: Greetings
         run: |
           echo "Hello!"
-          echo "Starting verification of Sambada ${{ inputs.releaseName }}
+          echo "Starting verification of Sambada ${{ inputs.releaseName }}"
 
       - uses: actions/checkout@v2
         with:
